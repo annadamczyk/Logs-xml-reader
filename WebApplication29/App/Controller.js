@@ -41,7 +41,6 @@
 	}
 
 	function refreshLogs(){
-		var maxTimestamp =0;
 		$scope.logsData.forEach(function(item){
 			if(item.timestamp > maxTimestamp){
 				maxTimestamp = item.timestamp;

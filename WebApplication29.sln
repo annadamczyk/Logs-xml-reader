@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication29", "WebApplication29\WebApplication29.csproj", "{5B5B5CDC-82A0-4900-857A-88BE55A79C8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "WebApplication29\Client.csproj", "{5B5B5CDC-82A0-4900-857A-88BE55A79C8E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{B6F7C5E2-E564-4B71-9C7B-0B48A52B9DD3}"
 EndProject
