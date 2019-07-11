@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="../Scripts/angular.js"></script>
+    <script src="../Scripts/angular-route.js"></script>
+    <script src="../App/Module.js"></script>
+    <script src="../App/Controller.js"></script>
+    <script src="../App/Service.js"></script>
+    <style>
+        table {
+            border: 2px solid #808080;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #0094ff;
+            color: white;
+        }
+        tr:nth-child(even) {background-color: #f2f2f2;}
+    </style>
+</head>
+<body ng-app="AppModule">
+    <div ng-controller="AppController">
+        Filter: <input type="text" ng-model="filterText">
+        Thread range: <select ng-init="threadColumn = 'empty'" ng-model="threadColumn" ng-options="x for x in threadRanges" ng-click="filter()">{{x}}</select>
+        <select ng-model="filterColumn" ng-click="filter()" ng-options="x for x in filtersName">{{x}}</select>
+        <button ng-click="filter()">Filter</button>
+        Sorting column: <select ng-model="selectedName" ng-options="x for x in selectedNames">{{x}}</select>
+        <button ng-click="reverse = false;">Sort ascending</button>
+        <button ng-click="reverse = true;">Sort descending</button>
+        <br />
+            <table>
+                <tr>
+                    <th>Logger</th>
+                    <th>Timestamp</th>
+                    <th>Level</th>
+                    <th>Thread</th>
+                    <th>Message</th>
+                </tr>
+                <tr data-ng-repeat="log in logsData | orderBy: selectedName : reverse">
+                        <td>{{log.logger}}</td>
+                        <td>{{log.timestamp}}</td>
+                        <td>{{log.level}}</td>
+                        <td>{{log.thread}}</td>
+                        <td>{{log.message}}</td>
+               </tr>
+            </table>
+        <div ng-if="!logsData">Please wait...</div>
+    </div>
+
+</body>
+</html>
