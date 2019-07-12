@@ -42,8 +42,12 @@
 
 	$scope.filterAngular = function(){
 		return function(item){
+		var orThreadRange = seekThreadRange(item);
+		if($scope.threadColumn === 'empty' && $scope.threadColumn !== 'empty'){
+			return orThreadRange;
+		}
 		if($scope.filterColumn === "level"){
-			return item.level.includes($scope.filterText.toUpperCase()) || item.level.includes($scope.filterText.toLowerCase()); 
+			return (item.level.includes($scope.filterText.toUpperCase()) || item.level.includes($scope.filterText.toLowerCase())) && orThreadRange; 
 		}else if($scope.filterColumn === "thread"){
 			return item.thread === $scope.filterText;
 		}else if($scope.filterColumn === "logger"){
@@ -53,6 +57,10 @@
 		}else if($scope.threadColumn === 'empty' && ($scope.filterColumn === "" || typeof $scope.filterColumn === 'undefined')){
 			return item;
 		}
+		}
+	}
+
+	function seekThreadRange(item){
 		if($scope.threadColumn !== 'empty'){
 			if($scope.threadColumn === "<=10"){
 				return item.thread <= 10;
@@ -65,8 +73,8 @@
 			}else if($scope.threadColumn === ">110"){
 				return item.thread > 110;
 			}
-		}
-		}
+		}else if($scope.threadColumn === 'empty') return item;
+		else return false;
 	}
 
 	function refreshLogs(){
