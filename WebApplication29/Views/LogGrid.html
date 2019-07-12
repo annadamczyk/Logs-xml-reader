@@ -28,9 +28,8 @@
 <body ng-app="AppModule">
     <div ng-controller="AppController">
         Filter: <input type="text" ng-model="filterText">
-        Thread range: <select ng-init="threadColumn = 'empty'" ng-model="threadColumn" ng-options="x for x in threadRanges" ng-click="filter()">{{x}}</select>
-        <select ng-model="filterColumn" ng-click="filter()" ng-options="x for x in filtersName">{{x}}</select>
-        <button ng-click="filter()">Filter</button>
+        Thread range: <select ng-init="threadColumn = 'empty'" ng-model="threadColumn" ng-options="x for x in threadRanges">{{x}}</select>
+        <select ng-model="filterColumn" ng-options="x for x in filtersName">{{x}}</select>
         Sorting column: <select ng-model="selectedName" ng-options="x for x in selectedNames">{{x}}</select>
         <button ng-click="reverse = false;">Sort ascending</button>
         <button ng-click="reverse = true;">Sort descending</button>
@@ -43,7 +42,7 @@
                     <th>Thread</th>
                     <th>Message</th>
                 </tr>
-                <tr data-ng-repeat="log in logsData | orderBy: selectedName : reverse">
+                <tr data-ng-repeat="log in logsData | orderBy: selectedName : reverse | filter:filterAngular()">
                         <td>{{log.logger}}</td>
                         <td>{{log.timestamp}}</td>
                         <td>{{log.level}}</td>
